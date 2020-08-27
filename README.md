@@ -17,6 +17,8 @@ All documents related to API are available on [here](https://github.com/umutbayr
 > You can also import the project straight into [Intellij IDEA](https://github.com/JetBrains/intellij-community) by selecting New > Project from Version Control
 
 # Configurations
+You can make database and mail configurations on **application.properties**.
+
 ### Database Configuration
 ```
 spring.datasource.url=jdbc: POSTGRESQL_CONNECTION_URL
