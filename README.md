@@ -7,7 +7,7 @@ The server-side of the project was developed during my 30-day internship at TÜB
 | Java | Spring Boot| 1.8+| 3.8.1+
 
 # API Documentation
-All documents related to API are available on [here](https://github.com/umutbayramoglu/event-management-system-backend/wiki).
+All documents related to API are available on [here](https://github.com/umutbayramoglu/event-management-system-backend/wiki/API-Documentation).
 
 # Getting Started
 1. Clone this repository:
