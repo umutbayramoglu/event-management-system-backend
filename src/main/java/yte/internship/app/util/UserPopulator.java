@@ -30,10 +30,10 @@ public class UserPopulator {
     @Transactional
     public void createUser() throws ParseException {
         List<Authority> savedAuthorities = authorityRepository.saveAll(Set.of(new Authority(null, "READ"), new Authority(null, "WRITE")));
-        User_ adminUser = new User_(null, "admin", "admin", "Umut Emre","Bayramoglu","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.copyOf(savedAuthorities),new HashSet<>(),new HashSet<>(),null,null);
-        User_ normalUser = new User_(null, "user", "user", "Normal","User","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.of(new Authority(null, "READ")),new HashSet<>(),new HashSet<>(),null,null);
-        User_ user1 = new User_(null, "u", "u", "Umut Emre","Bayramoglu","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.copyOf(savedAuthorities),new HashSet<>(),new HashSet<>(),null,null);
-        User_ user2 = new User_(null, "e", "e", "Emre","User","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.of(new Authority(null, "READ")),new HashSet<>(),new HashSet<>(),null,null);
+        User_ adminUser = new User_(null, "admin", "admin", "Umut Emre","Bayramoglu","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.copyOf(savedAuthorities),new HashSet<>(),new HashSet<>(),null,null,null);
+        User_ normalUser = new User_(null, "user", "user", "Normal","User","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.of(new Authority(null, "READ")),new HashSet<>(),new HashSet<>(),null,null,null);
+        User_ user1 = new User_(null, "u", "u", "Umut Emre","Bayramoglu","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.copyOf(savedAuthorities),new HashSet<>(),new HashSet<>(),null,null,null);
+        User_ user2 = new User_(null, "e", "e", "Emre","User","uebayramoglu@gmail.com",new Date(),"1.jpg",Set.of(new Authority(null, "READ")),new HashSet<>(),new HashSet<>(),null,null,null);
 
 
         Date startDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse("2020-08-20 00:00:00");

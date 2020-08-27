@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,6 +32,6 @@ public class EventPoll {
     @JsonIgnore
     @JsonManagedReference
     @OneToMany(mappedBy = "poll",fetch = FetchType.EAGER)
-    private Set<EventPollQuestion> questions;
+    private List<EventPollQuestion> questions;
 
 }

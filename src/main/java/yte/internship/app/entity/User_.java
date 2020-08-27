@@ -55,9 +55,13 @@ public class User_ implements UserDetails, CredentialsContainer {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<EventRegistrationQuestionUserAnswer> userAnswers = new ArrayList<>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private List<EventPollUserSelection> userPollSelections = new ArrayList<>();
+
 	@Override
 	public boolean isAccountNonExpired() {
-		return true;
+		return false;
 	}
 
 	@Override

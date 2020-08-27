@@ -1,10 +1,13 @@
 package yte.internship.app.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.common.reflection.XMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import yte.internship.app.entity.EventPoll;
+import yte.internship.app.entity.EventPollUserSelection;
 import yte.internship.app.entity.dto.EventDTO;
 import yte.internship.app.entity.Event;
 import yte.internship.app.entity.dto.EventRegistrationQuestionUserAnswerDTO;
@@ -198,6 +201,26 @@ public class EventController {
     public ResponseEntity cancelAttending(@PathVariable String eventId, @PathVariable String username) {
         try {
             return ResponseEntity.ok(eventService.cancelAttending(Long.valueOf(eventId), username));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
+        } catch (ClassCastException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
+        }
+    }
+
+
+    /**
+     * Receive {@link EventPoll} object and handle.
+     *
+     * @param eventId   Event id of event that associated with event poll.
+     * @param eventPollUserAnswers Received list of {@link EventPollUserSelection} objects
+     * @return A configured response entity object that contains http status, header and body with requested data.
+     */
+    @RequestMapping(value = "/events/{eventId}/poll", method = RequestMethod.POST)
+    public ResponseEntity saveEventPoll(@PathVariable String eventId,
+                                        @RequestBody List<EventPollUserSelection> eventPollUserAnswers){
+        try {
+            return ResponseEntity.ok(eventService.saveEventPoll(Long.valueOf(eventId),eventPollUserAnswers));
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
         } catch (ClassCastException e) {

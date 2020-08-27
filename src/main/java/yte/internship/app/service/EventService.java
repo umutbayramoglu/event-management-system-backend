@@ -33,6 +33,7 @@ public class EventService {
     private final UserRepository userRepository;
     private final UserEventRepo userEventRepo;
     private final UserMapper userMapper;
+
     public List<Event> getAllEvents() {
         return eventRepository.findAll(Sort.by("createdDate").descending());
     }
@@ -112,7 +113,7 @@ public class EventService {
             userEvent.setUser(user);
             userEvent.setEvent(event);
 
-            for (int i = 0; i < event.getRegistrationFormQuestions().size() ; i++) {
+            for (int i = 0; i < event.getRegistrationFormQuestions().size(); i++) {
                 EventRegistrationQuestion question = event.getRegistrationFormQuestions().get(i);
                 EventRegistrationQuestionUserAnswer userAnswer = registrationFormUserAnswers.get(i);
 
@@ -162,4 +163,21 @@ public class EventService {
     }
 
 
+    public boolean saveEventPoll(Long eventId, List<EventPollUserSelection> eventPollUserAnswers) {
+        Event event = eventRepository.findById(eventId).orElseThrow(EntityNotFoundException::new);
+
+        for (int i = 0; i < event.getPoll().getQuestions().size(); i++) {
+            EventPollQuestion question = event.getPoll().getQuestions().get(i);
+            EventPollUserSelection userAnswer = eventPollUserAnswers.get(i);
+
+            userAnswer.setQuestion(question);
+            userAnswer.setUser(eventPollUserAnswers.get(i).getUser());
+            question.getUserSelections().add(userAnswer);
+
+        }
+
+        eventRepository.save(event);
+
+        return true;
+    }
 }
